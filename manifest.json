@@ -1,7 +1,7 @@
 {
   "name": "Github PR Reviewer",
-  "version": "1.0",
-  "description": "mark PRs files as reviewed/un-reviewed for matched patterns.",
+  "version": "0.0.1",
+  "description": "Chrome extension to mark PRs files as reviewed/un-reviewed for matched file patterns.",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": "images/motiva_16.png",
@@ -14,7 +14,6 @@
     "128": "images/motiva_128.png"
   },
   "permissions": [
-    "activeTab",
     "storage"
   ],
   "content_scripts": [
