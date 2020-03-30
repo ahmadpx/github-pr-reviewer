@@ -1,2 +1,3 @@
-# github-pr-reviewer
-mark PRs files as reviewed/un-reviewed for matched patterns.
+# Github PR reviewer
+
+Chrome extension to mark PRs files as reviewed/un-reviewed for matched file patterns.
