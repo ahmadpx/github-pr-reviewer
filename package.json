@@ -1,0 +1,24 @@
+{
+  "name": "github-pr-reviewer",
+  "version": "0.0.1",
+  "description": "Chrome extension to mark PRs files as reviewed/un-reviewed for matched file patterns.",
+  "dependencies": {},
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-web-extension": "^1.6.1"
+  },
+  "scripts": {
+    "dev": "parcel ./manifest.json",
+    "build": "parcel build ./manifest.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmadpx/github-pr-reviewer.git"
+  },
+  "author": "Ahmed Abdallah <ahmadpx@hotmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmadpx/github-pr-reviewer/issues"
+  },
+  "homepage": "https://github.com/ahmadpx/github-pr-reviewer#readme"
+}
