@@ -5,7 +5,7 @@ const archiver = require('archiver');
 
 const src = './dist';
 const newVersion = pumpVersion();
-const output = `${pkgJSON.name}.${newVersion}.gz`;
+const output = `${pkgJSON.name}.${newVersion}.zip`;
 
 zipDirectory(src, output).then(() => {
   fs.writeFileSync(
