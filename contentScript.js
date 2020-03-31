@@ -1,4 +1,11 @@
-onMessage(function({ filesPatterns, markAll, asViewed }, sender, sendResponse) {
+/**
+ * main
+ */
+onMessage(function (
+  { filesPatterns, markAll, asViewed },
+  sender,
+  sendResponse,
+) {
   reviewPRFiles({ filesPatterns, markAll, asViewed });
   sendResponse({ done: true });
 });
@@ -10,14 +17,25 @@ onMessage(function({ filesPatterns, markAll, asViewed }, sender, sendResponse) {
  * @param {Boolean} asViewed
  */
 function reviewPRFiles({ filesPatterns, markAll, asViewed }) {
-  if(markAll) {
-    document.querySelectorAll(`.js-reviewed-checkbox`).forEach(input => check(input, asViewed))
+  if (markAll) {
+    document
+      .querySelectorAll(`.js-reviewed-checkbox`)
+      .forEach((input) => check(input, asViewed));
   } else {
-    filesPatterns.forEach(pattern => {
+    filesPatterns.forEach((pattern) => {
       Array.from(document.querySelectorAll(`.js-file-header[data-path]`))
-          .filter(el => el.getAttribute('data-path').toLowerCase().includes(pattern.value.toLowerCase()))
-          .forEach(el => el.querySelectorAll(`.js-reviewed-checkbox`).forEach(input => check(input, asViewed)));
-    })
+        .filter((el) =>
+          el
+            .getAttribute('data-path')
+            .toLowerCase()
+            .includes(pattern.value.toLowerCase()),
+        )
+        .forEach((el) =>
+          el
+            .querySelectorAll(`.js-reviewed-checkbox`)
+            .forEach((input) => check(input, asViewed)),
+        );
+    });
   }
 }
 
@@ -27,7 +45,7 @@ function reviewPRFiles({ filesPatterns, markAll, asViewed }) {
  * @param {Boolean} asViewed
  */
 function check(input, asViewed) {
-  asViewed ? !input.checked && input.click() : input.checked && input.click()
+  asViewed ? !input.checked && input.click() : input.checked && input.click();
 }
 
 /**
