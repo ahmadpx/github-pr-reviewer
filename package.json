@@ -2,14 +2,24 @@
   "name": "github-pr-reviewer",
   "version": "0.0.1",
   "description": "Chrome extension to mark PRs files as reviewed/un-reviewed for matched file patterns.",
-  "dependencies": {},
-  "devDependencies": {
-    "parcel-bundler": "^1.12.4",
-    "parcel-plugin-web-extension": "^1.6.1"
-  },
   "scripts": {
-    "dev": "parcel ./manifest.json",
-    "build": "parcel build ./manifest.json"
+    "dev": "npm run cleanup && parcel ./manifest.json",
+    "build": "npm run cleanup &&  parcel build ./manifest.json",
+    "cleanup": "rimraf -rf dist"
+  },
+  "dependencies": {
+    "vue": "^2.6.11"
+  },
+  "devDependencies": {
+    "@vue/component-compiler-utils": "^3.1.1",
+    "parcel-bundler": "^1.12.4",
+    "parcel-plugin-svelte": "^4.0.6",
+    "parcel-plugin-web-extension": "^1.6.1",
+    "prettier": "^2.0.2",
+    "rimraf": "^3.0.2",
+    "sass": "^1.26.3",
+    "svelte": "^3.20.1",
+    "vue-template-compiler": "^2.6.11"
   },
   "repository": {
     "type": "git",
