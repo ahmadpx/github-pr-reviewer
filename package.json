@@ -1,12 +1,12 @@
 {
   "name": "github-pr-reviewer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Chrome extension to mark PRs files as reviewed/un-reviewed for matched file patterns.",
   "scripts": {
     "dev": "npm run cleanup && parcel ./manifest.json",
     "build": "npm run cleanup &&  parcel build ./manifest.json",
     "cleanup": "rimraf -rf dist",
-    "git:commit": "git commit -am 'build: new version 0.0.3'",
+    "git:commit": "git commit -am 'build: new version 0.0.4'",
     "git:push": "git push origin master",
     "pump:major": "node packNewVersion.js major",
     "pump:minor": "node packNewVersion.js minor",

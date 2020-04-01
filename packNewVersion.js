@@ -7,33 +7,35 @@ const src = './dist';
 const newVersion = pumpVersion();
 const output = `${pkgJSON.name}.${newVersion}.zip`;
 
-zipDirectory(src, output).then(() => {
-  fs.writeFileSync(
-    './package.json',
-    JSON.stringify(
-      {
-        ...pkgJSON,
-        version: newVersion,
-        scripts: {
-          ...pkgJSON.scripts,
-          'git:commit': pkgJSON.scripts['git:commit'].replace(
-            pkgJSON.version,
-            newVersion,
-          ),
+(async function main() {
+  await zipDirectory(src, output).then(() => {
+    fs.writeFileSync(
+      './package.json',
+      JSON.stringify(
+        {
+          ...pkgJSON,
+          version: newVersion,
+          scripts: {
+            ...pkgJSON.scripts,
+            'git:commit': pkgJSON.scripts['git:commit'].replace(
+              pkgJSON.version,
+              newVersion,
+            ),
+          },
         },
-      },
-      null,
-      2,
-    ),
-  );
+        null,
+        2,
+      ),
+    );
 
-  fs.writeFileSync(
-    './manifest.json',
-    JSON.stringify({ ...manifest, version: newVersion }, null, 2),
-  );
+    fs.writeFileSync(
+      './manifest.json',
+      JSON.stringify({ ...manifest, version: newVersion }, null, 2),
+    );
 
-  console.log(`a new version {${newVersion}} is packed`);
-});
+    console.log(`a new version {${newVersion}} is packed`);
+  });
+})();
 
 /**
  * @param {String} source
