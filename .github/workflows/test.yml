@@ -9,7 +9,7 @@ jobs:
     name: Update @tajawal/web-docs-cli on dependent repos
     runs-on: ubuntu-latest
 
-    if: github.event.pusher.name == 'seera-frontend' && contains(github.event.commits[0].message, '@tajawal/web-docs-cli')
+    if: github.event.pusher.name == 'seera-frontend' && github.event.commits[0].message.includes('@tajawal/web-docs-cli')
 
     steps:
       - name: Checkout
