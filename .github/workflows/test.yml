@@ -8,6 +8,8 @@ jobs:
   update-web-docs-cli:
     name: Update @tajawal/web-docs-cli on dependent repos
     runs-on: ubuntu-latest
+    
+    if: github.event.pusher.name == 'ahmadpx' && contains(github.event.commits[0].message, 'test')
 
     steps:
       - name: Dump context
