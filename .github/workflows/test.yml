@@ -11,5 +11,5 @@ jobs:
 
     steps:
       - name: Dump context
-        run: echo '${{ toJSON(github.event.commits[0]) }}'
+        run: echo '${{ contains(github.event.commits[0].message, 'test') }}'
       
