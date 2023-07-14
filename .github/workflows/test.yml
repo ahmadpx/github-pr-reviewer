@@ -1,0 +1,39 @@
+name: Update @tajawal/web-docs-cli on dependent repos
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  update-web-docs-cli:
+    name: Update @tajawal/web-docs-cli on dependent repos
+    runs-on: ubuntu-latest
+
+    if: github.event.pusher.name == 'seera-frontend' && contains(github.event.commits[0].message, '@tajawal/web-docs-cli')
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: "master"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Get package version
+        id: package-version
+        run: echo "::set-output name=version::$(node -p "require('./packages/web-docs-cli/package.json').version")"
+
+      - name: Setup npm global config
+        run:
+          npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.SEERA_FRONTEND_TOKEN }}
+          npm config set "@tajawal:registry" https://npm.pkg.github.com/
+
+      - name: Install almosafer-cli
+        run: npm install -g @tajawal/almosafer-cli@latest
+
+      - name: Update @tajawal/web-docs-cli on dependent repos
+        run: almosafer-cli update-package-version --package=@tajawal/web-docs-cli --version=${{ steps.package-version.outputs.version }} --prTitle="Update @tajawal/web-docs-cli version to ${{ steps.package-version.outputs.version }}" --isDraftPR=false
