@@ -9,9 +9,10 @@ jobs:
     name: Update @tajawal/web-docs-cli on dependent repos
     runs-on: ubuntu-latest
 
-    if: github.event.pusher.name == 'seera-frontend' && github.event.commits[0].message.includes('@tajawal/web-docs-cli')
-
     steps:
+      - name: Dump context
+        run: echo '${{ toJSON(github.event.pusher) }}'
+      
       - name: Checkout
         uses: actions/checkout@v2
         with:
